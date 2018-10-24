@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-kantarsyncnow",
+  "version": "0.0.1",
+  "description": "media plugin",
+  "cordova": {
+    "id": "cordova-plugin-kantarsyncnow",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MobileAccord/kantar-sync-now.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Simon, Koros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MobileAccord/kantar-sync-now/issues"
+  },
+  "homepage": "https://github.com/MobileAccord/kantar-sync-now#readme"
+}
