@@ -2,22 +2,22 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-kantarsyncnow" version="0.0.1">
    <name>KantarSyncNow</name>
    <js-module name="KantarSyncNow" src="www/KantarSyncNow.js">
-		<clobbers target="cordova.plugins.KantarSyncNow" />
+      <clobbers target="cordova.plugins.KantarSyncNow" />
    </js-module>
    <platform name="android">
       <config-file parent="/*" target="res/xml/config.xml">
-			<feature name="KantarSyncNow">
-				<param name="android-package" value="com.mobileaccrod.geopoll.plugins.kantarsyncnow.KantarSyncNow" />
-			</feature>
-		</config-file>
-		<config-file parent="/*" target="AndroidManifest.xml" />
-		<source-file src="src/android/KantarSyncNow.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
-		<source-file src="src/android/libSyncNowDetector/build.gradle" target-dir="./libSyncNowDetector" />
-		<source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="./libSyncNowDetector" />
-		<source-file src="src/android/libSyncNowDetector/libSyncNowDetector.iml" target-dir="./libSyncNowDetector" />
-		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-		<hook type="after_platform_add" src="./scripts/android/editManifest.js" />
-		<hook type="after_plugin_install" src="./scripts/android/editManifest.js" />
-		<hook type="before_build" src="./scripts/android/editManifest.js" />
+         <feature name="KantarSyncNow">
+            <param name="android-package" value="com.mobileaccrod.geopoll.plugins.kantarsyncnow.KantarSyncNow" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/KantarSyncNow.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
+	  <source-file src="src/android/libSyncNowDetector/build.gradle" target-dir="./libSyncNowDetector" />
+	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="./libSyncNowDetector" />
+	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.iml" target-dir="./libSyncNowDetector" />
+	  <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+	  <hook type="after_platform_add" src="./scripts/android/editManifest.js" />
+      <hook type="after_plugin_install" src="./scripts/android/editManifest.js" />
+      <hook type="before_build" src="./scripts/android/editManifest.js" />
    </platform>
 </plugin>
