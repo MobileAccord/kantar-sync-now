@@ -12,10 +12,7 @@
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
       <source-file src="src/android/KantarSyncNow.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
-	  <source-file src="src/android/libSyncNowDetector/build.gradle" target-dir="./libSyncNowDetector" />
-	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="./libSyncNowDetector" />
-	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.iml" target-dir="./libSyncNowDetector" />
+	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="." />
 	  <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-	  
    </platform>
 </plugin>

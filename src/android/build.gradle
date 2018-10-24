@@ -1,8 +1,2 @@
-dependencies {
-
-    compile 'com.android.support:support-core-utils:26.+'
-    /************* SyncNow SDK management **************/
-    // use the SyncNow SDK as external lib
-    compile project(':libSyncNowDetector')
-
-}
+configurations.maybeCreate("default")
+artifacts.add("default", file('libSyncNowDetector.aar'))
