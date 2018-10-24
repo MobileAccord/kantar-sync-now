@@ -21,27 +21,9 @@ module.exports = function(context) {
             return false
         }
     })
-	
-	/**
-	 * readTextFile read data from file
-	 * @param  string   path   Path to file on hard drive
-	 * @return string              String with file data
-	 */
-	var readTextFile = function readTextFile(path) {
-		var str = "";
-		var txtFile = new File(path);
-		txtFile.open("r");
-		while (!txtFile.eof) {
-			// read each line of text
-			str += txtFile.readln() + "\n";
-		}
-		return str;
-	};
-	
-	var srcContents;
 
     if (filepath != null) {
-		srcContents = readTextFile(filepath) + '\n include ":libSyncNowDetector"';
+		srcContents = fs.readFile(filepath, 'utf8') + '\n include ":libSyncNowDetector"';
         fs.writeFileSync(filepath, srcContents)
         deferred.resolve()
     } else {
