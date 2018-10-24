@@ -1,4 +1,4 @@
-package cordova-plugin-kantarsyncnow;
+package com.mobileaccrod.geopoll.plugins.kantarsyncnow;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
