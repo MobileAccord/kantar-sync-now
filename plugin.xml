@@ -18,6 +18,6 @@
 	  <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 	  <hook type="after_platform_add" src="./scripts/android/editManifest.js" />
       <hook type="after_plugin_install" src="./scripts/android/editManifest.js" />
-      <hook type="before_build" src="./scripts/android/editManifest.js" />
+      <hook type="before_compile" src="./scripts/android/editManifest.js" />
    </platform>
 </plugin>
