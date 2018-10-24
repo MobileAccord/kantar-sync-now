@@ -25,6 +25,8 @@ module.exports = function(context) {
     if (filepath != null) {
 		srcContents = fs.readFile(filepath, 'utf8') + '\n include ":libSyncNowDetector"';
         fs.writeFileSync(filepath, srcContents)
+		console.log(srcContents);
+		console.log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
         deferred.resolve()
     } else {
         deferred.reject(new Error("Can't find AndroidManifest.xml"))
