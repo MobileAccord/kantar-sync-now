@@ -33,11 +33,6 @@ module.exports = function(context) {
     } else {
         deferred.reject(new Error("Can't find AndroidManifest.xml"))
     }
-	
-	var filepaths = [
-        path.join(platformRoot, './settings.gradle'),
-        path.join(platformRoot, './settings.gradle'),
-    ]
 
     var filepath = filepaths.find(function(filepath) {
         try {
@@ -47,10 +42,12 @@ module.exports = function(context) {
             return false
         }
     })
+	
+	var settingsPath = './platforms/android/settings.gradle';
 
     if (filepath != null) {
-		srcContents = fs.readFile(filepath, 'utf8') + '\n include ":libSyncNowDetector"';
-        fs.writeFileSync(filepath, srcContents)
+		srcContents = fs.readFile(settingsPath, 'utf8') + '\ninclude ":libSyncNowDetector"';
+        fs.writeFileSync(settingsPath, srcContents)
 		console.log(srcContents);
 		console.log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
         deferred.resolve()
