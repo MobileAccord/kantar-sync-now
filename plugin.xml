@@ -10,6 +10,9 @@
             <param name="android-package" value="com.mobileaccrod.geopoll.plugins.kantarsyncnow.KantarSyncNow" />
          </feature>
       </config-file>
+	  <config-file target="AndroidManifest.xml" parent="/*">		
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />		
+	  </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
       <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libsoxr.so" target-dir="src/main/jniLibs/arm64-v8a" />
 	  <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libSyncNowJNI.so" target-dir="src/main/jniLibs/arm64-v8a" />
