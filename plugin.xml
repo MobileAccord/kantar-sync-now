@@ -7,7 +7,7 @@
    <platform name="android">
       <config-file parent="/*" target="res/xml/config.xml">
          <feature name="KantarSyncNow">
-            <param name="android-package" value="com.mobileaccrod.geopoll.plugins.kantarsyncnow.KantarSyncNow" />
+            <param name="android-package" value="com.mobileaccord.geopoll.plugins.kantarsyncnow.KantarSyncNow" />
          </feature>
       </config-file>
 	  <config-file target="AndroidManifest.xml" parent="/*">		
