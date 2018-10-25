@@ -152,7 +152,7 @@ public class KantarSyncNow extends CordovaPlugin {
             msg.obj = text;
             msg.what = sRequestPrint;
 
-            Log.d("Kantar Printer", msg.toString())
+            Log.d("Kantar Printer", msg.toString());
         }
     }
 
