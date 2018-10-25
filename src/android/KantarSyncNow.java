@@ -312,4 +312,17 @@ public class KantarSyncNow extends CordovaPlugin {
             }
         }
     }
+
+    private void invokeStartDetect(String message, CallbackContext callbackContext) {
+
+        try {
+            this.startDetection();
+            callbackContext.success("startDetection OK");
+        }
+        catch(Exception exc)
+        {
+            callbackContext.error("Expected one non-empty string argument.");
+        }
+
+    }
 }
