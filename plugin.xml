@@ -24,5 +24,8 @@
 	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libSyncNowJNI.so" target-dir="src/main/jniLibs/x86" />
 	  <source-file src="src/android/libSyncNowDetector/classes.jar" target-dir="libs" />
 	  <source-file src="src/android/libSyncNowDetector/kantarsyncnow.xml" target-dir="res/values" />
+	  <source-file src="src/android/KantarSyncNow.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
+	  <source-file src="src/android/AudioCapture.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
+	  <source-file src="src/android/AudioDetector.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
    </platform>
 </plugin>
