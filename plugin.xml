@@ -11,13 +11,15 @@
          </feature>
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
-      <source-file src="src/android/KantarSyncNow.java" target-dir="src/cordova-plugin-kantarsyncnow/KantarSyncNow" />
-	  <source-file src="src/android/libSyncNowDetector/build.gradle" target-dir="./libSyncNowDetector" />
-	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="./libSyncNowDetector" />
-	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.iml" target-dir="./libSyncNowDetector" />
-	  <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-	  <hook type="after_platform_add" src="./scripts/android/editManifest.js" />
-      <hook type="after_plugin_install" src="./scripts/android/editManifest.js" />
-      <hook type="before_compile" src="./scripts/android/editManifest.js" />
+      <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libsoxr.so" target-dir="src/main/jniLibs/arm64-v8a" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libSyncNowJNI.so" target-dir="src/main/jniLibs/arm64-v8a" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi/libsoxr.so" target-dir="src/main/jniLibs/armeabi" />
+	   <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi/libSyncNowJNI.so" target-dir="src/main/jniLibs/armeabi" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi-v7a/libsoxr.so" target-dir="src/main/jniLibs/armeabi-v7a" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi-v7a/libSyncNowJNI.so" target-dir="src/main/jniLibs/armeabi-v7a" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libsoxr.so" target-dir="src/main/jniLibs/x86" />
+	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libSyncNowJNI.so" target-dir="src/main/jniLibs/x86" />
+	  <source-file src="src/android/libSyncNowDetector/classes.jar" target-dir="libs" />
+	  
    </platform>
 </plugin>
