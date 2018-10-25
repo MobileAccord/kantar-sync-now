@@ -9,7 +9,7 @@
  * without the express written permission of Kantar S.A.S.
  *
  */
-package com.kantarmedia.syncnow.example.utils;
+package com.mobileaccrod.geopoll.plugins.kantarsyncnow;
 
 import java.io.File;
 import java.util.Locale;
