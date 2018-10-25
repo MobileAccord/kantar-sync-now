@@ -23,6 +23,6 @@
 	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libsoxr.so" target-dir="src/main/jniLibs/x86" />
 	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libSyncNowJNI.so" target-dir="src/main/jniLibs/x86" />
 	  <source-file src="src/android/libSyncNowDetector/classes.jar" target-dir="libs" />
-	  <source-file src="src/android/kantarsyncnow.xml" target-dir="res/values" />
+	  <source-file src="src/android/libSyncNowDetector/kantarsyncnow.xml" target-dir="res/values" />
    </platform>
 </plugin>
