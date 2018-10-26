@@ -320,12 +320,13 @@ public class KantarSyncNow extends CordovaPlugin {
 
             Log.d(TAG, "====== invokeStartDetect ======");
             Log.d(TAG, "message " + message);
-            
+
             this.startDetection();
             callbackContext.success("startDetection OK");
         }
         catch(Exception exc)
         {
+            Log.e(exc);
             callbackContext.error("Expected one non-empty string argument.");
         }
 
