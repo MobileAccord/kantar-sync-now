@@ -93,7 +93,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		if (detectorConfig.logEnabled) {
 			String FileNameLog = getNextAvailableFileName(BASE_FILE_NAME,".txt");
 			if (null != FileNameLog) {
-				KantarSyncNow.println(mParent.getStringResource(".log_file") + " " + FileNameLog);
+				KantarSyncNow.println(mParent.getStringResource("log_file") + " " + FileNameLog);
 				detectorConfiguration.extraParameters.logFileName = FileNameLog;
 			}
 		}
@@ -114,7 +114,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		mDetectorSDK = SyncNowDetectorFactory.createSyncNowDetector(mParent.cordova.getActivity(), detectorConfiguration, resultString);
 		if(null == mDetectorSDK){
 			// irrecoverable error: the SDK can not be instantiated		  
-			throw new Exception(mParent.getStringResource("R.string.error_instance_sdk") + " " + resultString);
+			throw new Exception(mParent.getStringResource("error_instance_sdk") + " " + resultString);
 		}
 
 		//default mode
@@ -169,7 +169,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 	 **/
 	@Override
 	public void onPayload(PayloadEvent event) {
-		String messsage = mDetectorConfig.instName + mParent.getStringResource(".onPayload") + " " + convertPayloadtoString(event);
+		String messsage = mDetectorConfig.instName + mParent.getStringResource("onPayload") + " " + convertPayloadtoString(event);
 		mParent.requestPrint(messsage);
 	}
 

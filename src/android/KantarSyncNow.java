@@ -46,6 +46,7 @@ public class KantarSyncNow extends CordovaPlugin {
      * Will capture on Start
      **/
     private boolean mAutoStart = true;
+    private static int sRequestPrint = 1;
 
     /**
      * Number of detector 0, 1 or 2
@@ -72,9 +73,9 @@ public class KantarSyncNow extends CordovaPlugin {
 
     public KantarSyncNow() {
         //init verbose with default preference in XML default_values.xml
-        sVerbose = getResources().getBoolean(false);
+        sVerbose = false;
         //init nbDetectorToRun with default preference in XML default_values.xml
-        sNbDetectorToRun = getResources().getInteger(2);
+        sNbDetectorToRun = 2;
         //check if nb detector is 1 or 2
         if (sNbDetectorToRun < 1 || sNbDetectorToRun > 2) {
             sNbDetectorToRun = 2;
@@ -96,12 +97,12 @@ public class KantarSyncNow extends CordovaPlugin {
     private synchronized boolean checkPermissions(int requestCode) {
         List<String> permissionsList = new ArrayList<String>();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+        if (ContextCompat.checkSelfPermission(this.getCurrentContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
             permissionsList.add(Manifest.permission.RECORD_AUDIO);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        if (ContextCompat.checkSelfPermission(this.getCurrentContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permissionsList.size() > 0) {
-            ActivityCompat.requestPermissions(this, permissionsList.toArray(new String[permissionsList.size()]),
+            ActivityCompat.requestPermissions(this.getCurrentContext(), permissionsList.toArray(new String[permissionsList.size()]),
                     requestCode);
             return false;
         }
@@ -158,7 +159,7 @@ public class KantarSyncNow extends CordovaPlugin {
 
     private boolean updateSettings() {
         boolean retCode = true;
-        Resources resourcesInst = getResources();
+        //Resources resourcesInst = getResources();
         String stringDefaultValue = null;
         String errorInfo = "";
 
@@ -168,25 +169,25 @@ public class KantarSyncNow extends CordovaPlugin {
 
             for (int i = 0; i < sNbDetectorToRun; i++) {
                 // Read boolean values: log
-                boolean tempBoolDefaultValue = resourcesInst.getBoolean(R.bool.logDefaultValue);
+                boolean tempBoolDefaultValue = false;
                 mDetectorConfigs.elementAt(i).logEnabled = true;
 
                 // Read license value
-                errorInfo = this.cordova.getActivity().getString(R.string.error_license);
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("licenseDefaultValue" + i, "string", getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
+                errorInfo = this.getStringResource("error_license");
+                ressourceId = this.cordova.getActivity().getResources().getIdentifier("licenseDefaultValue" + i, "string", this.cordova.getActivity().getPackageName());
+                stringDefaultValue = this.getStringResource(ressourceId);
                 mDetectorConfigs.elementAt(i).license = stringDefaultValue;
 
                 // Read content ID bits length
                 errorInfo = this.cordova.getActivity().getString(R.string.error_identifier);
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numIdentifierBitsDefaultValue" + i, "integer", getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
+                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numIdentifierBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
+                stringDefaultValue =getStringResource(ressourceId);
                 mDetectorConfigs.elementAt(i).numIdentifierBits = Integer.valueOf(stringDefaultValue);
 
                 // Read time stamp bits length
                 errorInfo = this.cordova.getActivity().getString(R.string.error_timestamp);
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numTimeStampBitsDefaultValue" + i, "integer", getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
+                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numTimeStampBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
+                stringDefaultValue = getStringResource(ressourceId);
                 mDetectorConfigs.elementAt(i).numTimeStampBits = Integer.valueOf(stringDefaultValue);
             }
         } catch (Exception ex) {
@@ -212,7 +213,7 @@ public class KantarSyncNow extends CordovaPlugin {
 
         // Update detection parameters from preferences before configuring the SDK
         if (false == updateSettings()) {
-            Toast.makeText(this.cordova.getActivity(), this.cordova.getActivity().getString(R.string.invalid_settings), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.cordova.getActivity(), this.getStringResource("invalid_settings"), Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -287,7 +288,7 @@ public class KantarSyncNow extends CordovaPlugin {
                     mAudioCapture.join();
                 } catch (InterruptedException e) {
                     if (sVerbose) {
-                        println(getString(R.string.error));
+                        println(getString(this.getStringResource("error")));
                         e.printStackTrace();
                     }
                 }
@@ -332,8 +333,19 @@ public class KantarSyncNow extends CordovaPlugin {
         return resource_text;
     }
 
+
     public Context getCurrentContext()
     {
         this.cordova.getActivity();
+    }
+
+    public static String println(Object obj) {
+        String res = null;
+        res = (null == obj) ? "<null>" : obj.toString();
+        if (null != sInstance) {
+            sInstance.append(res);
+        }
+        verboseLog(0,TAG, res);
+        return res;
     }
 }
