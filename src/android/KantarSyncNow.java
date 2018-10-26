@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import android.content.res.Resources;
-
+import android.app.Activity;
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -334,9 +334,9 @@ public class KantarSyncNow extends CordovaPlugin {
     }
 
 
-    public Context getCurrentContext()
+    public Activity getCurrentContext()
     {
-        this.cordova.getActivity();
+        return this.cordova.getActivity();
     }
 
     public static String println(Object obj) {
