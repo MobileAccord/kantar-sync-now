@@ -117,7 +117,12 @@ public class KantarSyncNow extends CordovaPlugin {
             return true;
         }else if(action.equals("invokeStartDetect"))
         {
-            this.invokeStartDetect(callbackContext);
+            final CallbackContext callbackContext1 = callbackContext;
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    invokeStartDetect(callbackContext1);
+                }
+            });
             return true;
         }
 
@@ -324,7 +329,7 @@ public class KantarSyncNow extends CordovaPlugin {
         try {
 
             Log.d(TAG, "====== invokeStartDetect ======");
-            
+
             this.startDetection();
             callbackContext.success("startDetection OK");
         }
