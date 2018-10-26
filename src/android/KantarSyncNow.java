@@ -218,7 +218,8 @@ public class KantarSyncNow extends CordovaPlugin {
 
         // Update detection parameters from preferences before configuring the SDK
         if (false == updateSettings()) {
-            Toast.makeText(this.cordova.getActivity(), this.getStringResource("invalid_settings"), Toast.LENGTH_LONG).show();
+
+            showToast(getStringResource("invalid_settings"));
             return false;
         }
 
@@ -228,7 +229,7 @@ public class KantarSyncNow extends CordovaPlugin {
             mAudioCapture = new AudioCapture(this);
         } catch (Exception e) {
             verboseLog(0, "AudioCapture", "## run(): Exceptions in init audio capture - msg=" + e.getMessage());
-            Toast.makeText(this.cordova.getActivity(), "AudioCapture ERROR:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            showToast(getStringResource("AudioCapture ERROR:" + e.getMessage()));
             return false;
         }
 
@@ -242,7 +243,7 @@ public class KantarSyncNow extends CordovaPlugin {
                 mDetectors.add(new AudioDetector(this, audioConfig, mDetectorConfigs.elementAt(i)));
             } catch (Exception e) {
                 verboseLog(0, "AudioDetector", "## run(): Exceptions in init AudioDetector " + i + " - msg=" + e.getMessage());
-                Toast.makeText(getCurrentContext(), "AudioDetector " + i + " ERROR:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                showToast(getStringResource("AudioDetector " + i + " ERROR:" + e.getMessage()));
                 isError++;
             }
         }
@@ -358,5 +359,13 @@ public class KantarSyncNow extends CordovaPlugin {
 
         verboseLog(0,TAG, res);
         return res;
+    }
+    public void showToast(final String message) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getCurrentContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
