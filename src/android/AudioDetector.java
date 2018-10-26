@@ -22,7 +22,7 @@ import com.kantarmedia.syncnow.SyncNowDetector.WatermarkDetectorConfiguration;
 import com.kantarmedia.syncnow.SyncNowDetectorFactory;
 import com.kantarmedia.syncnow.SyncNowDetectorListener;
 import com.kantarmedia.syncnow.SyncNowDetector.UtcAbsoluteDateAndTime;
-import com.kantarmedia.syncnow.example.R;
+
 
 
 public class AudioDetector implements SyncNowDetectorListener {
@@ -93,7 +93,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		if (detectorConfig.logEnabled) {
 			String FileNameLog = getNextAvailableFileName(BASE_FILE_NAME,".txt");
 			if (null != FileNameLog) {
-				KantarSyncNow.println(mParent.cordova.getActivity().getString(R.string.log_file) + " " + FileNameLog);
+				KantarSyncNow.println(mParent.getStringResource(".log_file") + " " + FileNameLog);
 				detectorConfiguration.extraParameters.logFileName = FileNameLog;
 			}
 		}
@@ -102,7 +102,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		if (detectorConfig.recordEnabled) {
 			String FileNameInputAudioRecord = getNextAvailableFileName(BASE_FILE_NAME,".wav");
 			if (null != FileNameInputAudioRecord) {
-				KantarSyncNow.println(mParent.cordova.getActivity().getString(R.string.record_file) + " " + FileNameInputAudioRecord);
+				KantarSyncNow.println(mParent.getStringResource("record_file") + " " + FileNameInputAudioRecord);
 				detectorConfiguration.extraParameters.recordFileName = FileNameInputAudioRecord;
 			}
 		}
@@ -114,17 +114,17 @@ public class AudioDetector implements SyncNowDetectorListener {
 		mDetectorSDK = SyncNowDetectorFactory.createSyncNowDetector(mParent.cordova.getActivity(), detectorConfiguration, resultString);
 		if(null == mDetectorSDK){
 			// irrecoverable error: the SDK can not be instantiated		  
-			throw new Exception(mParent.cordova.getActivity().getString(R.string.error_instance_sdk) + " " + resultString);
+			throw new Exception(mParent.getStringResource("R.string.error_instance_sdk") + " " + resultString);
 		}
 
 		//default mode
-		if(resultString.toString().equals(mParent.cordova.getActivity().getString(R.string.default_license))){
+		if(resultString.toString().equals(mParent.getStringResource("default_license"))){
 			
-			onDebug(mParent.cordova.getActivity().getString(R.string.warning_default) + " " + resultString);
+			onDebug(mParent.getStringResource("warning_default") + " " + resultString);
 		}
 		else
 		{
-			onDebug(mParent.cordova.getActivity().getString(R.string.success) + " "+ resultString);
+			onDebug(mParent.getStringResource("success") + " "+ resultString);
 		}
 
 		if(false == mDetectorSDK.setCurrentMotion(MotionType.MOTION_AUTOMATIC)){
@@ -159,7 +159,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 	 **/
 	@Override
 	public void onDebug(String text) {
-		String messsage = mDetectorConfig.instName + mParent.cordova.getActivity().getString(R.string.onDebug) + " " + text;
+		String messsage = mDetectorConfig.instName + mParent.getStringResource("onDebug") + " " + text;
 		//mParent.requestPrint(messsage);
 		Log.d("Audio Detector", messsage);
 	}
@@ -169,7 +169,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 	 **/
 	@Override
 	public void onPayload(PayloadEvent event) {
-		String messsage = mDetectorConfig.instName + mParent.cordova.getActivity().getString(R.string.onPayload) + " " + convertPayloadtoString(event);
+		String messsage = mDetectorConfig.instName + mParent.getStringResource(".onPayload") + " " + convertPayloadtoString(event);
 		mParent.requestPrint(messsage);
 	}
 
@@ -180,7 +180,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 	public void onAlarm(AlarmEvent event) {
 		// test to avoid displaying the confidence values
 		if (!((SyncNowDetectorListener.AlarmEventType.TYPE_INFO == event.type) && (SyncNowDetectorListener.AlarmEventCode.INFO_CONFIDENCE_VALUE == event.code))) {
-			String messsage = mDetectorConfig.instName + mParent.cordova.getActivity().getString(R.string.onAlarm) + " " + convertAlarmtoString(event);
+			String messsage = mDetectorConfig.instName + mParent.getStringResource("onAlarm") + " " + convertAlarmtoString(event);
 			mParent.requestPrint(messsage);
 		}
 	}
@@ -213,14 +213,14 @@ public class AudioDetector implements SyncNowDetectorListener {
 				retValue = String.format(Locale.ROOT, "Timestamp detected: %.2fs\n%s Confidence: %.2f Technology: %s", event.timeStamp, timeConvertedStr, event.confidence, event.awmTechnology);
 			}
 			else {
-				retValue = mParent.cordova.getActivity().getString(R.string.warning_unknown_type);
+				retValue = mParent.getStringResource("warning_unknown_type");
 			}
 		}
 		else if(SyncNowDetectorListener.PayloadType.TYPE_NOT_IDENTIFIED == event.payloadType) {
-			retValue =mParent.cordova.getActivity().getString(R.string.warning_content_not_marked) + " " + event.awmTechnology;
+			retValue =mParent.getStringResource("warning_content_not_marked") + " " + event.awmTechnology;
 		}
 		else if(SyncNowDetectorListener.PayloadType.TYPE_MARKED_BUT_NOT_IDENTIFIED == event.payloadType) {
-			retValue = mParent.cordova.getActivity().getString(R.string.warning_content_not_identifier) + " " + event.awmTechnology;
+			retValue = mParent.getStringResource("warning_content_not_identifier") + " " + event.awmTechnology;
 		}
 		return retValue;
 	}

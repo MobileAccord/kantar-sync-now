@@ -1,6 +1,7 @@
 package com.mobileaccrod.geopoll.plugins.kantarsyncnow;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Message;
@@ -55,7 +56,6 @@ public class KantarSyncNow extends CordovaPlugin {
     /**
      * Detection SDK wrapper and configuration
      **/
-    private Vector<AudioDetector> mDetectors = null;
     private Vector<AudioDetector.DetectorConfiguration> mDetectorConfigs = null;
 
     /**
@@ -72,9 +72,9 @@ public class KantarSyncNow extends CordovaPlugin {
 
     public KantarSyncNow() {
         //init verbose with default preference in XML default_values.xml
-        sVerbose = getResources().getBoolean(R.bool.verbose);
+        sVerbose = getResources().getBoolean(false);
         //init nbDetectorToRun with default preference in XML default_values.xml
-        sNbDetectorToRun = getResources().getInteger(R.integer.nbDetectorToRun);
+        sNbDetectorToRun = getResources().getInteger(2);
         //check if nb detector is 1 or 2
         if (sNbDetectorToRun < 1 || sNbDetectorToRun > 2) {
             sNbDetectorToRun = 2;
@@ -236,7 +236,7 @@ public class KantarSyncNow extends CordovaPlugin {
                 mDetectors.add(new AudioDetector(this, audioConfig, mDetectorConfigs.elementAt(i)));
             } catch (Exception e) {
                 verboseLog(0, "AudioDetector", "## run(): Exceptions in init AudioDetector " + i + " - msg=" + e.getMessage());
-                Toast.makeText(this, "AudioDetector " + i + " ERROR:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getCurrentContext(), "AudioDetector " + i + " ERROR:" + e.getMessage(), Toast.LENGTH_LONG).show();
                 isError++;
             }
         }
@@ -324,5 +324,16 @@ public class KantarSyncNow extends CordovaPlugin {
             callbackContext.error("Expected one non-empty string argument.");
         }
 
+    }
+
+    public  String getStringResource(String name)
+    {
+        String resource_text = this.cordova.getActivity().getString(cordova.getActivity().getResources().getIdentifier( name, "string", cordova.getActivity().getPackageName()));
+        return resource_text;
+    }
+
+    public Context getCurrentContext()
+    {
+        this.cordova.getActivity();
     }
 }
