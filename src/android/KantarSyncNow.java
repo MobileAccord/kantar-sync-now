@@ -331,7 +331,7 @@ public class KantarSyncNow extends CordovaPlugin {
         }
         catch(Exception exc)
         {
-            Log.e(exc);
+            Log.e(TAG,exc.getMessage());
             callbackContext.error("Expected one non-empty string argument.");
         }
 
