@@ -21,6 +21,7 @@ import com.kantarmedia.syncnow.SyncNowDetector;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import android.content.res.Resources;
 
 /**
  * This class echoes a string called from JavaScript.
