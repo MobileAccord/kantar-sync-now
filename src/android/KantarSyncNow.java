@@ -117,12 +117,7 @@ public class KantarSyncNow extends CordovaPlugin {
             return true;
         }else if(action.equals("invokeStartDetect"))
         {
-            final CallbackContext callbackContext1 = callbackContext;
-            cordova.getThreadPool().execute(new Runnable() {
-                public void run() {
-                    invokeStartDetect(callbackContext1);
-                }
-            });
+            invokeStartDetect(callbackContext);
             return true;
         }
 
@@ -327,10 +322,12 @@ public class KantarSyncNow extends CordovaPlugin {
     private void invokeStartDetect(CallbackContext callbackContext) {
 
         try {
-
             Log.d(TAG, "====== invokeStartDetect ======");
-
-            this.startDetection();
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    startDetection();
+                }
+            });
             callbackContext.success("startDetection OK");
         }
         catch(Exception exc)
@@ -338,6 +335,8 @@ public class KantarSyncNow extends CordovaPlugin {
             Log.e(TAG,exc.getMessage());
             callbackContext.error("Expected one non-empty string argument.");
         }
+
+
 
     }
 
