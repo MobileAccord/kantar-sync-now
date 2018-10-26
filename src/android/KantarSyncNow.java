@@ -115,7 +115,12 @@ public class KantarSyncNow extends CordovaPlugin {
             String message = args.getString(0);
             this.coolMethod(message, callbackContext);
             return true;
+        }else if(action.equals("invokeStartDetect"))
+        {
+            this.invokeStartDetect("",callbackContext);
+            return true;
         }
+
         return false;
     }
 
