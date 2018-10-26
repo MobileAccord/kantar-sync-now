@@ -17,9 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.kantarmedia.syncnow.SyncNowDetector;
-import com.mobileaccrod.geopoll.R;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +26,8 @@ import java.util.Vector;
  * This class echoes a string called from JavaScript.
  */
 public class KantarSyncNow extends CordovaPlugin {
+
+    private static final String TAG = "KantarSyncNow";
 
     public static final String PREF_KEY_LOG = "log";
     public static final String PREF_KEY_LICENSE = "license";
@@ -102,7 +101,7 @@ public class KantarSyncNow extends CordovaPlugin {
         if (ContextCompat.checkSelfPermission(this.getCurrentContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permissionsList.size() > 0) {
-            ActivityCompat.requestPermissions(this.getCurrentContext(), permissionsList.toArray(new String[permissionsList.size()]),
+            ActivityCompat.requestPermissions(this.cordova.getActivity(), permissionsList.toArray(new String[permissionsList.size()]),
                     requestCode);
             return false;
         }
@@ -159,7 +158,7 @@ public class KantarSyncNow extends CordovaPlugin {
 
     private boolean updateSettings() {
         boolean retCode = true;
-        //Resources resourcesInst = getResources();
+        Resources resourcesInst = this.cordova.getActivity().getResources();
         String stringDefaultValue = null;
         String errorInfo = "";
 
@@ -175,19 +174,19 @@ public class KantarSyncNow extends CordovaPlugin {
                 // Read license value
                 errorInfo = this.getStringResource("error_license");
                 ressourceId = this.cordova.getActivity().getResources().getIdentifier("licenseDefaultValue" + i, "string", this.cordova.getActivity().getPackageName());
-                stringDefaultValue = this.getStringResource(ressourceId);
+                stringDefaultValue = resourcesInst.getString(ressourceId);
                 mDetectorConfigs.elementAt(i).license = stringDefaultValue;
 
                 // Read content ID bits length
-                errorInfo = this.cordova.getActivity().getString(R.string.error_identifier);
+                errorInfo = this.getStringResource("error_identifier");
                 ressourceId = this.cordova.getActivity().getResources().getIdentifier("numIdentifierBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
-                stringDefaultValue =getStringResource(ressourceId);
+                stringDefaultValue = resourcesInst.getString(ressourceId);
                 mDetectorConfigs.elementAt(i).numIdentifierBits = Integer.valueOf(stringDefaultValue);
 
                 // Read time stamp bits length
-                errorInfo = this.cordova.getActivity().getString(R.string.error_timestamp);
+                errorInfo = this.getStringResource("error_timestamp");
                 ressourceId = this.cordova.getActivity().getResources().getIdentifier("numTimeStampBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
-                stringDefaultValue = getStringResource(ressourceId);
+                stringDefaultValue = resourcesInst.getString(ressourceId);
                 mDetectorConfigs.elementAt(i).numTimeStampBits = Integer.valueOf(stringDefaultValue);
             }
         } catch (Exception ex) {
@@ -288,7 +287,7 @@ public class KantarSyncNow extends CordovaPlugin {
                     mAudioCapture.join();
                 } catch (InterruptedException e) {
                     if (sVerbose) {
-                        println(getString(this.getStringResource("error")));
+                        println(this.getStringResource("error"));
                         e.printStackTrace();
                     }
                 }
@@ -342,9 +341,7 @@ public class KantarSyncNow extends CordovaPlugin {
     public static String println(Object obj) {
         String res = null;
         res = (null == obj) ? "<null>" : obj.toString();
-        if (null != sInstance) {
-            sInstance.append(res);
-        }
+
         verboseLog(0,TAG, res);
         return res;
     }
