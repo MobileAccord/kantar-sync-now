@@ -1,4 +1,4 @@
-package com.mobileaccrod.geopoll.plugins.kantarsyncnow;
+package com.mobileaccord.geopoll.plugins.kantarsyncnow;
 
 import android.Manifest;
 import android.content.Context;
