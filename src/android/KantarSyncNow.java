@@ -178,22 +178,13 @@ public class KantarSyncNow extends CordovaPlugin {
                 mDetectorConfigs.elementAt(i).logEnabled = true;
 
                 // Read license value
-                errorInfo = this.getStringResource("error_license");
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("licenseDefaultValue" + i, "string", this.cordova.getActivity().getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
-                mDetectorConfigs.elementAt(i).license = stringDefaultValue;
+                mDetectorConfigs.elementAt(i).license = "error in License setting";
 
                 // Read content ID bits length
-                errorInfo = this.getStringResource("error_identifier");
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numIdentifierBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
-                mDetectorConfigs.elementAt(i).numIdentifierBits = Integer.valueOf(stringDefaultValue);
+                mDetectorConfigs.elementAt(i).numIdentifierBits = i == 0 ? 4 : 32;
 
                 // Read time stamp bits length
-                errorInfo = this.getStringResource("error_timestamp");
-                ressourceId = this.cordova.getActivity().getResources().getIdentifier("numTimeStampBitsDefaultValue" + i, "integer", this.cordova.getActivity().getPackageName());
-                stringDefaultValue = resourcesInst.getString(ressourceId);
-                mDetectorConfigs.elementAt(i).numTimeStampBits = Integer.valueOf(stringDefaultValue);
+                mDetectorConfigs.elementAt(i).numTimeStampBits = i == 0 ? 8 : 16;
             }
         } catch (Exception ex) {
             verboseLog(0, "## MainActivity:updateSettings", "EXCEPTION: " + errorInfo + " Msg: " + ex.getMessage());
