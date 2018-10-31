@@ -14,8 +14,7 @@
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />		
 	  </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
-	  <framework src="libSyncNowDetector" custom="true"/>
-	  <source-file src="src/android/libSyncNowDetector/kantarsyncnow.xml" target-dir="res/values" />
+	  <framework src="src/android/libSyncNowDetector" custom="true"/>
 	  <source-file src="src/android/KantarSyncNow.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioCapture.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioDetector.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
