@@ -14,16 +14,8 @@
 		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />		
 	  </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
-      <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libsoxr.so" target-dir="src/jniLibs/arm64-v8a" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/arm64-v8a/libSyncNowJNI.so" target-dir="src/jniLibs/arm64-v8a" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi/libsoxr.so" target-dir="src/jniLibs/armeabi" />
-	   <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi/libSyncNowJNI.so" target-dir="src/jniLibs/armeabi" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi-v7a/libsoxr.so" target-dir="src/jniLibs/armeabi-v7a" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/armeabi-v7a/libSyncNowJNI.so" target-dir="src/jniLibs/armeabi-v7a" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libsoxr.so" target-dir="src/jniLibs/x86" />
-	  <source-file src="src/android/libSyncNowDetector/jniLibs/x86/libSyncNowJNI.so" target-dir="src/jniLibs/x86" />
-	  <source-file src="src/android/libSyncNowDetector/classes.jar" target-dir="libs" />
-	  <source-file src="src/android/libSyncNowDetector/kantarsyncnow.xml" target-dir="res/values" />
+	  <source-file src="src/android/libSyncNowDetector/libSyncNowDetector.aar" target-dir="libs" />
+	  <framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
 	  <source-file src="src/android/KantarSyncNow.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioCapture.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioDetector.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
