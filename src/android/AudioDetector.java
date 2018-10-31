@@ -93,7 +93,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		if (detectorConfig.logEnabled) {
 			String FileNameLog = getNextAvailableFileName(BASE_FILE_NAME,".txt");
 			if (null != FileNameLog) {
-				KantarSyncNow.println(mParent.getStringResource("log_file") + " " + FileNameLog);
+				KantarSyncNow.println("log:" + " " + FileNameLog);
 				detectorConfiguration.extraParameters.logFileName = FileNameLog;
 			}
 		}
@@ -102,7 +102,7 @@ public class AudioDetector implements SyncNowDetectorListener {
 		if (detectorConfig.recordEnabled) {
 			String FileNameInputAudioRecord = getNextAvailableFileName(BASE_FILE_NAME,".wav");
 			if (null != FileNameInputAudioRecord) {
-				KantarSyncNow.println(mParent.getStringResource("record_file") + " " + FileNameInputAudioRecord);
+				KantarSyncNow.println("Record:" + " " + FileNameInputAudioRecord);
 				detectorConfiguration.extraParameters.recordFileName = FileNameInputAudioRecord;
 			}
 		}
@@ -114,17 +114,17 @@ public class AudioDetector implements SyncNowDetectorListener {
 		mDetectorSDK = SyncNowDetectorFactory.createSyncNowDetector(mParent.cordova.getActivity(), detectorConfiguration, resultString);
 		if(null == mDetectorSDK){
 			// irrecoverable error: the SDK can not be instantiated		  
-			throw new Exception(mParent.getStringResource("error_instance_sdk") + " " + resultString);
+			throw new Exception("SyncNow Detector SDK can not be instantiated." + " " + resultString);
 		}
 
 		//default mode
-		if(resultString.toString().equals(mParent.getStringResource("default_license"))){
+		if(resultString.toString().equals("AWM_DEFAULT_DETECTOR")){
 			
-			onDebug(mParent.getStringResource("warning_default") + " " + resultString);
+			onDebug("Warning : Default mode activated (default parameters used instead of customer requirements). Check your license or contact Kantar Media support. Technology:" + " " + resultString);
 		}
 		else
 		{
-			onDebug(mParent.getStringResource("success") + " "+ resultString);
+			onDebug("SyncNow Detector SDK instance creation succeed with technology" + " "+ resultString);
 		}
 
 		if(false == mDetectorSDK.setCurrentMotion(MotionType.MOTION_AUTOMATIC)){
@@ -213,14 +213,14 @@ public class AudioDetector implements SyncNowDetectorListener {
 				retValue = String.format(Locale.ROOT, "Timestamp detected: %.2fs\n%s Confidence: %.2f Technology: %s", event.timeStamp, timeConvertedStr, event.confidence, event.awmTechnology);
 			}
 			else {
-				retValue = mParent.getStringResource("warning_unknown_type");
+				retValue = "Unknown TYPE_IDENTIFIER received";
 			}
 		}
 		else if(SyncNowDetectorListener.PayloadType.TYPE_NOT_IDENTIFIED == event.payloadType) {
-			retValue =mParent.getStringResource("warning_content_not_marked") + " " + event.awmTechnology;
+			retValue = "Content not marked, Technology : " + " " + event.awmTechnology;
 		}
 		else if(SyncNowDetectorListener.PayloadType.TYPE_MARKED_BUT_NOT_IDENTIFIED == event.payloadType) {
-			retValue = mParent.getStringResource("warning_content_not_identifier") + " " + event.awmTechnology;
+			retValue = "Content marked but not identified, Technology : " + " " + event.awmTechnology;
 		}
 		return retValue;
 	}

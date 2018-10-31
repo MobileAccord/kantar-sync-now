@@ -167,6 +167,8 @@ public class KantarSyncNow extends CordovaPlugin {
         Resources resourcesInst = this.cordova.getActivity().getResources();
         String stringDefaultValue = null;
         String errorInfo = "";
+        String licenseDefaultValue0 = "kADdG0VR9g/fm1J4Z+GJy4NqA8m9r6pXF+fjiZsoZ84VI6YkH8d0VjesAAxUIRw1s2cA5NSPhMqsxZ7AE0Sq6+cyiuEPyLQLZpE6AaMsZ280zLJ2KsqFXaautGZd77SVc0l9hzNNkjxFlI3co9IyZ4pLLpTkjzbC8ZjSZ3fD8mEMd/envT5zganW8ccov8TNkkRAAE1DMENGQ3dVa0RabWFsY0V1L1UxNS9MemRqQ2crdi81QWhVQW1xNTR1Q0VKeTNybTRPMlV3bzFUN2tIQ0UzUT0=";
+        String licenseDefaultValue1 = "kADTlb2rLUMPtsEijjIs/gdmqb4LeGmlp4nuEUjQoblGEyXx4nbzklQYjYo+5S0LMAnfVv/PElGcKSZfSQcuzydAeTtw7IknyIMnQuoMz9Oz7YvAFQ0WVHhvKPRUkpJKysOyTAuyF/zmJzmw1m8CQjpI77PcvFSsfMKrv5vddUnyS8DR8M6o7gkVuBPdRxOnORRAAE1DMENGQk5EbnFjUUpaUjI0dkRNbzdoZGdUaEsrT3d5QWhVQXJya1o0cmF5YXg4QklGN3FvSjErQ1JKZ0J1cz0=";
 
         try {
             //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -178,7 +180,7 @@ public class KantarSyncNow extends CordovaPlugin {
                 mDetectorConfigs.elementAt(i).logEnabled = true;
 
                 // Read license value
-                mDetectorConfigs.elementAt(i).license = "error in License setting";
+                mDetectorConfigs.elementAt(i).license = i == 0 ? licenseDefaultValue0 : licenseDefaultValue1;
 
                 // Read content ID bits length
                 mDetectorConfigs.elementAt(i).numIdentifierBits = i == 0 ? 4 : 32;
@@ -210,7 +212,7 @@ public class KantarSyncNow extends CordovaPlugin {
         // Update detection parameters from preferences before configuring the SDK
         if (false == updateSettings()) {
 
-            showToast(getStringResource("invalid_settings"));
+            showToast("Invalid Settings.\\nPlease check your settings value.");
             return false;
         }
 
@@ -334,8 +336,8 @@ public class KantarSyncNow extends CordovaPlugin {
 
     public  String getStringResource(String name)
     {
-        String resource_text = this.cordova.getActivity().getString(cordova.getActivity().getResources().getIdentifier( name, "string", cordova.getActivity().getPackageName()));
-        return resource_text;
+        //String resource_text = this.cordova.getActivity().getString(cordova.getActivity().getResources().getIdentifier( name, "string", cordova.getActivity().getPackageName()));
+        return name;
     }
 
 
