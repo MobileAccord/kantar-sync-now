@@ -18,5 +18,8 @@
 	  <source-file src="src/android/KantarSyncNow.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioCapture.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
 	  <source-file src="src/android/AudioDetector.java" target-dir="src/com/mobileaccord/geopoll/plugins/kantarsyncnow" />
+	  <hook type="after_platform_add" src="./scripts/android/editManifest.js" />
+	  <hook type="after_plugin_install" src="./scripts/android/editManifest.js" />
+	  <hook type="before_build" src="./scripts/android/editManifest.js" />
    </platform>
 </plugin>
